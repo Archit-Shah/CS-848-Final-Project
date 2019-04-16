@@ -236,13 +236,13 @@ class DomainEngine:
         cells = []
         vid = 0
         records = self.ds.get_raw_data()
-        records = records.sort_values(by=['dbaname','facilitytype','address','state','latitude','longitude'])
-        m = records.duplicated(['dbaname','facilitytype','address','state','latitude','longitude'])
+        records = records.sort_values(by=['ProviderNumber','HospitalName','Address1','City','State','ZipCode','CountyName'])
+        m = records.duplicated(['ProviderNumber','HospitalName','Address1','City','State','ZipCode','CountyName'])
         m.tolist()
         records["Dup"]=m
         records = records.reset_index(drop=True)
         #records = self.ds.get_raw_data().to_records()
-        Green = ['dbaname','facilitytype','address','state','latitude','longitude']
+        Green = ['ProviderNumber','HospitalName','Address1','City','State','ZipCode','CountyName']
         records = records.to_records()
         self.all_attrs = list(records.dtype.names)
         ii=0
